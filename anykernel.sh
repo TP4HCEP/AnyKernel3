@@ -38,6 +38,9 @@ ramdisk_compression=auto;
 
 ## AnyKernel boot install
 dump_boot;
+# patch android version
+android_ver=$(file_getprop /system/build.prop ro.build.version.release);
+patch_cmdline androidboot.version androidboot.version=$android_ver
 write_boot;
 ## end boot install
 
@@ -46,7 +49,7 @@ write_boot;
 #block=vendor_boot;
 #is_slot_device=1;
 #ramdisk_compression=auto;
-#patch_vbmeta_flag=auto;
+patch_vbmeta_flag=auto;
 
 # reset for vendor_boot patching
 #reset_ak;
